@@ -1,0 +1,50 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <group
+        android:scaleX="0.75"
+        android:scaleY="0.75"
+        android:translateX="13.5"
+        android:translateY="13.5">
+
+        <!-- bar 1  x=20.0  w=0.80  h=18 -->
+        <path android:fillColor="#FFFFFF" android:pathData="M19.60,45.00 h0.80 v18.00 h-0.80 z"/>
+        <!-- bar 2  x=24.0  w=0.93  h=26 -->
+        <path android:fillColor="#FFFFFF" android:pathData="M23.54,41.00 h0.93 v26.00 h-0.93 z"/>
+        <!-- bar 3  x=28.0  w=1.07  h=34 -->
+        <path android:fillColor="#FFFFFF" android:pathData="M27.47,37.00 h1.07 v34.00 h-1.07 z"/>
+        <!-- bar 4  x=32.0  w=1.20  h=28 -->
+        <path android:fillColor="#FFFFFF" android:pathData="M31.40,40.00 h1.20 v28.00 h-1.20 z"/>
+        <!-- bar 5  x=36.0  w=1.33  h=38 -->
+        <path android:fillColor="#FFFFFF" android:pathData="M35.34,35.00 h1.33 v38.00 h-1.33 z"/>
+        <!-- bar 6  x=40.0  w=1.47  h=44 -->
+        <path android:fillColor="#FFFFFF" android:pathData="M39.27,32.00 h1.47 v44.00 h-1.47 z"/>
+        <!-- bar 7  x=44.0  w=1.60  h=36 -->
+        <path android:fillColor="#FFFFFF" android:pathData="M43.20,36.00 h1.60 v36.00 h-1.60 z"/>
+        <!-- bar 8  x=48.0  w=1.73  h=48 -->
+        <path android:fillColor="#FFFFFF" android:pathData="M47.14,30.00 h1.73 v48.00 h-1.73 z"/>
+        <!-- bar 9  x=52.0  w=1.87  h=40 -->
+        <path android:fillColor="#FFFFFF" android:pathData="M51.07,34.00 h1.87 v40.00 h-1.87 z"/>
+        <!-- bar 10 x=56.0  w=2.00  h=30 -->
+        <path android:fillColor="#FFFFFF" android:pathData="M55.00,39.00 h2.00 v30.00 h-2.00 z"/>
+        <!-- bar 11 x=60.0  w=2.00  h=22 -->
+        <path android:fillColor="#FFFFFF" android:pathData="M59.00,43.00 h2.00 v22.00 h-2.00 z"/>
+        <!-- bar 12 x=64.0  w=2.00  h=32 -->
+        <path android:fillColor="#FFFFFF" android:pathData="M63.00,38.00 h2.00 v32.00 h-2.00 z"/>
+        <!-- bar 13 x=68.0  w=2.07  h=20 -->
+        <path android:fillColor="#FFFFFF" android:pathData="M66.97,44.00 h2.07 v20.00 h-2.07 z"/>
+        <!-- bar 14 x=72.0  w=2.13  h=28 -->
+        <path android:fillColor="#FFFFFF" android:pathData="M70.94,40.00 h2.13 v28.00 h-2.13 z"/>
+        <!-- bar 15 x=76.0  w=2.20  h=16 -->
+        <path android:fillColor="#FFFFFF" android:pathData="M74.90,46.00 h2.20 v16.00 h-2.20 z"/>
+        <!-- bar 16 x=80.0  w=2.27  h=24 -->
+        <path android:fillColor="#FFFFFF" android:pathData="M78.87,42.00 h2.27 v24.00 h-2.27 z"/>
+        <!-- bar 17 x=84.0  w=2.33  h=14 -->
+        <path android:fillColor="#FFFFFF" android:pathData="M82.84,47.00 h2.33 v14.00 h-2.33 z"/>
+        <!-- bar 18 x=88.0  w=2.40  h=10 -->
+        <path android:fillColor="#FFFFFF" android:pathData="M86.80,49.00 h2.40 v10.00 h-2.40 z"/>
+
+    </group>
+</vector>

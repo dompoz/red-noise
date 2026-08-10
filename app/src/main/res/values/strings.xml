@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Deep Red Noise</string>
+    <string name="play">Play</string>
+    <string name="pause">Pause</string>
+    <string name="stop">Stop</string>
+    <string name="volume">Volume</string>
+    <string name="redness">Redness</string>
+    <string name="sleep_timer">Sleep Timer</string>
+    <string name="notification_channel_name">Deep Red Noise Playback</string>
+    <string name="notification_channel_desc">Controls for Deep Red Noise background playback</string>
+    <string name="playing">Playing</string>
+    <string name="paused">Paused</string>
+    <string name="timer_off">Off</string>
+    <string name="timer_minutes">%d min</string>
+    <string name="noise_white">White</string>
+    <string name="noise_pink">Pink</string>
+    <string name="noise_red">Red</string>
+    <string name="noise_brown">Brown</string>
+</resources>

@@ -7,6 +7,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Bedtime
 import androidx.compose.material.icons.filled.Pause
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material3.*
@@ -22,6 +23,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen(
     isPlaying: Boolean,
@@ -34,7 +36,8 @@ fun MainScreen(
     onRednessChange: (Float) -> Unit,
     onTimerChange: (Int) -> Unit,
 ) {
-    var showTimerMenu by remember { mutableStateOf(false) }
+    var showTimerSheet by remember { mutableStateOf(false) }
+    val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
 
     val bgColor by animateColorAsState(
         targetValue = if (isPlaying) MaterialTheme.colorScheme.primary
@@ -145,53 +148,87 @@ fun MainScreen(
                 )
             }
 
-            // Sleep timer
-            Column(
+            // Sleep timer trigger button
+            val timerLabel = if (timerMinutes == 0) "Sleep Timer" else "$timerMinutes min"
+            OutlinedButton(
+                onClick = { showTimerSheet = true },
                 modifier = Modifier.fillMaxWidth(),
-                horizontalAlignment = Alignment.CenterHorizontally,
+                colors = ButtonDefaults.outlinedButtonColors(
+                    contentColor = if (timerMinutes == 0)
+                        MaterialTheme.colorScheme.onSurfaceVariant
+                    else
+                        MaterialTheme.colorScheme.primary,
+                ),
             ) {
-                Text(
-                    text = "Sleep Timer",
-                    style = MaterialTheme.typography.labelLarge,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                Icon(
+                    imageVector = Icons.Filled.Bedtime,
+                    contentDescription = null,
+                    modifier = Modifier.size(18.dp),
                 )
-                Spacer(Modifier.height(12.dp))
-                val timerRows = listOf(
-                    listOf(0, 15, 30, 45),
-                    listOf(60, 90, 120),
-                )
-                Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                    timerRows.forEach { row ->
-                        Row(
-                            horizontalArrangement = Arrangement.spacedBy(8.dp),
-                            modifier = Modifier.fillMaxWidth(),
-                        ) {
-                            row.forEach { mins ->
-                                val selected = timerMinutes == mins
-                                FilterChip(
-                                    selected = selected,
-                                    onClick = { onTimerChange(mins) },
-                                    label = {
-                                        Text(
-                                            text = if (mins == 0) "Off" else "${mins} min",
-                                            style = MaterialTheme.typography.labelMedium,
-                                            textAlign = TextAlign.Center,
-                                            maxLines = 1,
-                                            modifier = Modifier.fillMaxWidth(),
-                                        )
-                                    },
-                                    modifier = Modifier.weight(1f),
-                                    colors = FilterChipDefaults.filterChipColors(
-                                        selectedContainerColor = MaterialTheme.colorScheme.primaryContainer,
-                                        selectedLabelColor = MaterialTheme.colorScheme.onPrimaryContainer,
-                                    ),
-                                    border = FilterChipDefaults.filterChipBorder(
-                                        enabled = true,
+                Spacer(Modifier.width(8.dp))
+                Text(timerLabel, style = MaterialTheme.typography.labelLarge)
+            }
+        }
+
+        // Sleep timer bottom sheet
+        if (showTimerSheet) {
+            ModalBottomSheet(
+                onDismissRequest = { showTimerSheet = false },
+                sheetState = sheetState,
+            ) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 24.dp)
+                        .padding(bottom = 40.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                ) {
+                    Text(
+                        text = "Sleep Timer",
+                        style = MaterialTheme.typography.titleMedium,
+                        color = MaterialTheme.colorScheme.onSurface,
+                    )
+                    Spacer(Modifier.height(16.dp))
+                    val timerRows = listOf(
+                        listOf(0, 15, 30, 45),
+                        listOf(60, 90, 120),
+                    )
+                    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                        timerRows.forEach { row ->
+                            Row(
+                                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                                modifier = Modifier.fillMaxWidth(),
+                            ) {
+                                row.forEach { mins ->
+                                    val selected = timerMinutes == mins
+                                    FilterChip(
                                         selected = selected,
-                                        borderWidth = 0.5.dp,
-                                        selectedBorderWidth = 0.5.dp,
-                                    ),
-                                )
+                                        onClick = {
+                                            onTimerChange(mins)
+                                            showTimerSheet = false
+                                        },
+                                        label = {
+                                            Text(
+                                                text = if (mins == 0) "Off" else "$mins min",
+                                                style = MaterialTheme.typography.labelMedium,
+                                                textAlign = TextAlign.Center,
+                                                maxLines = 1,
+                                                modifier = Modifier.fillMaxWidth(),
+                                            )
+                                        },
+                                        modifier = Modifier.weight(1f),
+                                        colors = FilterChipDefaults.filterChipColors(
+                                            selectedContainerColor = MaterialTheme.colorScheme.primaryContainer,
+                                            selectedLabelColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                                        ),
+                                        border = FilterChipDefaults.filterChipBorder(
+                                            enabled = true,
+                                            selected = selected,
+                                            borderWidth = 0.5.dp,
+                                            selectedBorderWidth = 0.5.dp,
+                                        ),
+                                    )
+                                }
                             }
                         }
                     }

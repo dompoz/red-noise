@@ -14,3 +14,4 @@ gradle/daemon/
 gradle/android/
 gradle/notifications/
 gradle/workers/
+app/google-services.json

@@ -9,35 +9,63 @@ information the app collects and how it is used.
 
 ## Information We Collect
 
-**Currently, Deep Red Noise collects no personal data.** The app does not require an account, does not
-transmit any data over the internet, and does not collect any personally identifiable information.
+### App Settings
 
 Settings such as volume, redness, and sleep timer preferences are stored locally on your device using
 Android's DataStore and are never transmitted anywhere.
 
-## Crash Reporting and Analytics
+### Crash Reports
 
-A future update will add crash reporting and analytics to help improve the app. When that update is
-released, this privacy policy will be updated before the change goes live to describe exactly what
-data is collected, how it is used, and how to opt out.
+The app uses **Firebase Crashlytics** to automatically collect crash reports when the app
+unexpectedly closes. These reports help us identify and fix bugs. Crash reports may include:
+
+- Device model and Android version
+- App version
+- The state of the app at the time of the crash (stack traces and logs)
+- A randomly generated installation ID (not linked to your identity)
+
+Crash data is processed by Google and is subject to
+[Google's Privacy Policy](https://policies.google.com/privacy).
+
+### Analytics
+
+The app uses **Firebase Analytics** to collect anonymised usage data, including:
+
+- App open and session events
+- Device type and Android version
+- General country/region (not precise location)
+
+This data is aggregated and anonymised. It is used only to understand how the app is used in general
+and to guide improvements. It is processed by Google and subject to
+[Google's Privacy Policy](https://policies.google.com/privacy).
+
+## What We Do Not Collect
+
+- We do not collect your name, email address, or any other personally identifiable information
+- We do not access your microphone, camera, contacts, or files
+- We do not sell any data to third parties
 
 ## Third-Party Services
 
-The app uses the following third-party services that are part of the Android platform:
+The app uses the following third-party services:
 
-- **Google Fonts** — the app loads the Jost typeface from Google Fonts at runtime. This is a standard
-  Android feature and is subject to [Google's Privacy Policy](https://policies.google.com/privacy).
+- **Firebase Crashlytics** (Google) — crash reporting
+- **Firebase Analytics** (Google) — anonymised usage analytics
+- **Google Fonts** — the app loads the Jost typeface from Google Fonts at runtime
+
+All three are operated by Google and subject to
+[Google's Privacy Policy](https://policies.google.com/privacy).
 
 ## Children's Privacy
 
-Deep Red Noise does not knowingly collect any information from anyone, including children under the
-age of 13.
+Deep Red Noise does not knowingly collect personal information from children under the age of 13.
+The data collected by Firebase Crashlytics and Analytics is anonymised and not linked to any
+individual user.
 
 ## Changes to This Policy
 
 Any future changes to this privacy policy will be posted on this page with an updated date at the
-top. Significant changes (such as the introduction of data collection) will also be noted in the
-app's Play Store release notes.
+top. Significant changes will also be noted in the app's Play Store release notes.
 
 ## Contact
 

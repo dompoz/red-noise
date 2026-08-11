@@ -15,6 +15,7 @@
     }
     h1 { font-size: 1.8rem; margin-bottom: 4px; }
     h2 { font-size: 1.1rem; margin-top: 2rem; }
+    h3 { font-size: 1rem; margin-top: 1.5rem; margin-bottom: 0.25rem; }
     p, li { font-size: 0.97rem; }
     a { color: #c20030; }
     .updated { color: #666; font-size: 0.9rem; margin-top: 0; }
@@ -29,33 +30,60 @@
   what information the app collects and how it is used.</p>
 
   <h2>Information We Collect</h2>
-  <p><strong>Currently, Deep Red Noise collects no personal data.</strong> The app does not require an
-  account, does not transmit any data over the internet, and does not collect any personally
-  identifiable information.</p>
+
+  <h3>App Settings</h3>
   <p>Settings such as volume, redness, and sleep timer preferences are stored locally on your device
   using Android's DataStore and are never transmitted anywhere.</p>
 
-  <h2>Crash Reporting and Analytics</h2>
-  <p>A future update will add crash reporting and analytics to help improve the app. When that update
-  is released, this privacy policy will be updated before the change goes live to describe exactly
-  what data is collected, how it is used, and how to opt out.</p>
-
-  <h2>Third-Party Services</h2>
-  <p>The app uses the following third-party services that are part of the Android platform:</p>
+  <h3>Crash Reports</h3>
+  <p>The app uses <strong>Firebase Crashlytics</strong> to automatically collect crash reports when
+  the app unexpectedly closes. These reports help us identify and fix bugs. Crash reports may
+  include:</p>
   <ul>
-    <li><strong>Google Fonts</strong> — the app loads the Jost typeface from Google Fonts at runtime.
-    This is a standard Android feature and is subject to
-    <a href="https://policies.google.com/privacy">Google's Privacy Policy</a>.</li>
+    <li>Device model and Android version</li>
+    <li>App version</li>
+    <li>The state of the app at the time of the crash (stack traces and logs)</li>
+    <li>A randomly generated installation ID (not linked to your identity)</li>
+  </ul>
+  <p>Crash data is processed by Google and is subject to
+  <a href="https://policies.google.com/privacy">Google's Privacy Policy</a>.</p>
+
+  <h3>Analytics</h3>
+  <p>The app uses <strong>Firebase Analytics</strong> to collect anonymised usage data, including:</p>
+  <ul>
+    <li>App open and session events</li>
+    <li>Device type and Android version</li>
+    <li>General country/region (not precise location)</li>
+  </ul>
+  <p>This data is aggregated and anonymised. It is used only to understand how the app is used in
+  general and to guide improvements. It is processed by Google and subject to
+  <a href="https://policies.google.com/privacy">Google's Privacy Policy</a>.</p>
+
+  <h2>What We Do Not Collect</h2>
+  <ul>
+    <li>We do not collect your name, email address, or any other personally identifiable information</li>
+    <li>We do not access your microphone, camera, contacts, or files</li>
+    <li>We do not sell any data to third parties</li>
   </ul>
 
+  <h2>Third-Party Services</h2>
+  <p>The app uses the following third-party services:</p>
+  <ul>
+    <li><strong>Firebase Crashlytics</strong> (Google) — crash reporting</li>
+    <li><strong>Firebase Analytics</strong> (Google) — anonymised usage analytics</li>
+    <li><strong>Google Fonts</strong> — the app loads the Jost typeface from Google Fonts at runtime</li>
+  </ul>
+  <p>All three are operated by Google and subject to
+  <a href="https://policies.google.com/privacy">Google's Privacy Policy</a>.</p>
+
   <h2>Children's Privacy</h2>
-  <p>Deep Red Noise does not knowingly collect any information from anyone, including children under
-  the age of 13.</p>
+  <p>Deep Red Noise does not knowingly collect personal information from children under the age of 13.
+  The data collected by Firebase Crashlytics and Analytics is anonymised and not linked to any
+  individual user.</p>
 
   <h2>Changes to This Policy</h2>
   <p>Any future changes to this privacy policy will be posted on this page with an updated date at the
-  top. Significant changes (such as the introduction of data collection) will also be noted in the
-  app's Play Store release notes.</p>
+  top. Significant changes will also be noted in the app's Play Store release notes.</p>
 
   <h2>Contact</h2>
   <p>If you have any questions about this privacy policy, please contact:<br />

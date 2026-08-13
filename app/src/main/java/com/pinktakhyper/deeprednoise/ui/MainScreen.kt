@@ -18,10 +18,12 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import android.content.res.Configuration
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -46,6 +48,8 @@ fun MainScreen(
         label = "bg"
     )
 
+    val isLandscape = LocalConfiguration.current.orientation == Configuration.ORIENTATION_LANDSCAPE
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -59,115 +63,30 @@ fun MainScreen(
                 )
             )
     ) {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(horizontal = 28.dp)
-                .padding(top = 56.dp, bottom = 32.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.SpaceBetween,
-        ) {
-
-            // Title + status
-            Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                Text(
-                    text = "Deep Red Noise",
-                    style = MaterialTheme.typography.headlineLarge.copy(
-                        color = MaterialTheme.colorScheme.primary,
-                    )
-                )
-                Spacer(Modifier.height(4.dp))
-                Text(
-                    text = when {
-                        isPlaying && timerSecondsRemaining > 0 -> {
-                            val m = timerSecondsRemaining / 60
-                            val s = timerSecondsRemaining % 60
-                            "Stopping in %d:%02d".format(m, s)
-                        }
-                        isPlaying -> "Playing"
-                        else -> "Paused"
-                    },
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
-            }
-
-            // Play / pause button
-            val buttonScale by animateFloatAsState(
-                targetValue = if (isPlaying) 1f else 0.92f,
-                animationSpec = tween(300),
-                label = "scale"
+        if (isLandscape) {
+            LandscapeLayout(
+                isPlaying = isPlaying,
+                volume = volume,
+                redness = redness,
+                timerMinutes = timerMinutes,
+                timerSecondsRemaining = timerSecondsRemaining,
+                onPlayPause = onPlayPause,
+                onVolumeChange = onVolumeChange,
+                onRednessChange = onRednessChange,
+                onTimerClick = { showTimerSheet = true },
             )
-            Box(contentAlignment = Alignment.Center) {
-                // Glow ring when playing
-                if (isPlaying) {
-                    Box(
-                        modifier = Modifier
-                            .size(140.dp)
-                            .clip(CircleShape)
-                            .background(
-                                MaterialTheme.colorScheme.primary.copy(alpha = 0.18f)
-                            )
-                    )
-                }
-                FilledIconButton(
-                    onClick = onPlayPause,
-                    modifier = Modifier
-                        .size(112.dp)
-                        .scale(buttonScale),
-                    colors = IconButtonDefaults.filledIconButtonColors(
-                        containerColor = MaterialTheme.colorScheme.primary,
-                        contentColor = MaterialTheme.colorScheme.onPrimary,
-                    )
-                ) {
-                    Icon(
-                        imageVector = if (isPlaying) Icons.Filled.Pause else Icons.Filled.PlayArrow,
-                        contentDescription = if (isPlaying) "Pause" else "Play",
-                        modifier = Modifier.size(56.dp),
-                    )
-                }
-            }
-
-            // Sliders section
-            Column(
-                modifier = Modifier.fillMaxWidth(),
-                verticalArrangement = Arrangement.spacedBy(24.dp),
-            ) {
-                SliderRow(
-                    label = "Volume",
-                    value = volume,
-                    onValueChange = onVolumeChange,
-                    valueLabel = "${(volume * 100).toInt()}%",
-                )
-
-                SliderRow(
-                    label = "Redness",
-                    value = redness,
-                    onValueChange = onRednessChange,
-                    valueLabel = rednessLabel(redness),
-                )
-            }
-
-            // Sleep timer trigger button
-            val timerLabel = if (timerMinutes == 0) "Sleep Timer" else "$timerMinutes min"
-            OutlinedButton(
-                onClick = { showTimerSheet = true },
-                modifier = Modifier.fillMaxWidth(),
-                colors = ButtonDefaults.outlinedButtonColors(
-                    contentColor = if (timerMinutes == 0)
-                        MaterialTheme.colorScheme.onSurfaceVariant
-                    else
-                        MaterialTheme.colorScheme.primary,
-                ),
-            ) {
-                Icon(
-                    imageVector = Icons.Filled.Bedtime,
-                    contentDescription = null,
-                    modifier = Modifier.size(18.dp),
-                )
-                Spacer(Modifier.width(8.dp))
-                Text(timerLabel, style = MaterialTheme.typography.labelLarge)
-            }
+        } else {
+            PortraitLayout(
+                isPlaying = isPlaying,
+                volume = volume,
+                redness = redness,
+                timerMinutes = timerMinutes,
+                timerSecondsRemaining = timerSecondsRemaining,
+                onPlayPause = onPlayPause,
+                onVolumeChange = onVolumeChange,
+                onRednessChange = onRednessChange,
+                onTimerClick = { showTimerSheet = true },
+            )
         }
 
         // Sleep timer bottom sheet
@@ -235,6 +154,197 @@ fun MainScreen(
                 }
             }
         }
+    }
+}
+
+@Composable
+private fun PortraitLayout(
+    isPlaying: Boolean,
+    volume: Float,
+    redness: Float,
+    timerMinutes: Int,
+    timerSecondsRemaining: Long,
+    onPlayPause: () -> Unit,
+    onVolumeChange: (Float) -> Unit,
+    onRednessChange: (Float) -> Unit,
+    onTimerClick: () -> Unit,
+) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(horizontal = 28.dp)
+            .padding(top = 56.dp, bottom = 32.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.SpaceBetween,
+    ) {
+        TitleStatus(isPlaying, timerSecondsRemaining)
+        PlayButton(isPlaying, onPlayPause)
+        Column(
+            modifier = Modifier.fillMaxWidth(),
+            verticalArrangement = Arrangement.spacedBy(24.dp),
+        ) {
+            SliderRow(
+                label = "Volume",
+                value = volume,
+                onValueChange = onVolumeChange,
+                valueLabel = "${(volume * 100).toInt()}%",
+            )
+            SliderRow(
+                label = "Redness",
+                value = redness,
+                onValueChange = onRednessChange,
+                valueLabel = rednessLabel(redness),
+            )
+        }
+        TimerButton(timerMinutes, onTimerClick, Modifier.fillMaxWidth())
+    }
+}
+
+@Composable
+private fun LandscapeLayout(
+    isPlaying: Boolean,
+    volume: Float,
+    redness: Float,
+    timerMinutes: Int,
+    timerSecondsRemaining: Long,
+    onPlayPause: () -> Unit,
+    onVolumeChange: (Float) -> Unit,
+    onRednessChange: (Float) -> Unit,
+    onTimerClick: () -> Unit,
+) {
+    Row(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(horizontal = 24.dp)
+            .padding(vertical = 16.dp),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        // Left third: title + play button
+        Column(
+            modifier = Modifier
+                .weight(1f)
+                .fillMaxHeight(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center,
+        ) {
+            TitleStatus(isPlaying, timerSecondsRemaining)
+            Spacer(Modifier.height(24.dp))
+            PlayButton(isPlaying, onPlayPause)
+        }
+
+        Spacer(Modifier.width(16.dp))
+
+        // Right two thirds: sliders + timer
+        Column(
+            modifier = Modifier
+                .weight(2f)
+                .fillMaxHeight(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center,
+        ) {
+            SliderRow(
+                label = "Volume",
+                value = volume,
+                onValueChange = onVolumeChange,
+                valueLabel = "${(volume * 100).toInt()}%",
+            )
+            Spacer(Modifier.height(16.dp))
+            SliderRow(
+                label = "Redness",
+                value = redness,
+                onValueChange = onRednessChange,
+                valueLabel = rednessLabel(redness),
+            )
+            Spacer(Modifier.height(20.dp))
+            TimerButton(timerMinutes, onTimerClick, Modifier.fillMaxWidth())
+        }
+    }
+}
+
+@Composable
+private fun TitleStatus(isPlaying: Boolean, timerSecondsRemaining: Long) {
+    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+        Text(
+            text = "Deep Red Noise",
+            style = MaterialTheme.typography.headlineLarge.copy(
+                color = MaterialTheme.colorScheme.primary,
+            ),
+            textAlign = TextAlign.Center,
+        )
+        Spacer(Modifier.height(4.dp))
+        Text(
+            text = when {
+                isPlaying && timerSecondsRemaining > 0 -> {
+                    val m = timerSecondsRemaining / 60
+                    val s = timerSecondsRemaining % 60
+                    "Stopping in %d:%02d".format(m, s)
+                }
+                isPlaying -> "Playing"
+                else -> "Paused"
+            },
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
+    }
+}
+
+@Composable
+private fun PlayButton(isPlaying: Boolean, onPlayPause: () -> Unit) {
+    val buttonScale by animateFloatAsState(
+        targetValue = if (isPlaying) 1f else 0.92f,
+        animationSpec = tween(300),
+        label = "scale"
+    )
+    Box(contentAlignment = Alignment.Center) {
+        if (isPlaying) {
+            Box(
+                modifier = Modifier
+                    .size(140.dp)
+                    .clip(CircleShape)
+                    .background(
+                        MaterialTheme.colorScheme.primary.copy(alpha = 0.18f)
+                    )
+            )
+        }
+        FilledIconButton(
+            onClick = onPlayPause,
+            modifier = Modifier
+                .size(112.dp)
+                .scale(buttonScale),
+            colors = IconButtonDefaults.filledIconButtonColors(
+                containerColor = MaterialTheme.colorScheme.primary,
+                contentColor = MaterialTheme.colorScheme.onPrimary,
+            )
+        ) {
+            Icon(
+                imageVector = if (isPlaying) Icons.Filled.Pause else Icons.Filled.PlayArrow,
+                contentDescription = if (isPlaying) "Pause" else "Play",
+                modifier = Modifier.size(56.dp),
+            )
+        }
+    }
+}
+
+@Composable
+private fun TimerButton(timerMinutes: Int, onTimerClick: () -> Unit, modifier: Modifier = Modifier) {
+    val timerLabel = if (timerMinutes == 0) "Sleep Timer" else "$timerMinutes min"
+    OutlinedButton(
+        onClick = onTimerClick,
+        modifier = modifier,
+        colors = ButtonDefaults.outlinedButtonColors(
+            contentColor = if (timerMinutes == 0)
+                MaterialTheme.colorScheme.onSurfaceVariant
+            else
+                MaterialTheme.colorScheme.primary,
+        ),
+    ) {
+        Icon(
+            imageVector = Icons.Filled.Bedtime,
+            contentDescription = null,
+            modifier = Modifier.size(18.dp),
+        )
+        Spacer(Modifier.width(8.dp))
+        Text(timerLabel, style = MaterialTheme.typography.labelLarge)
     }
 }
 

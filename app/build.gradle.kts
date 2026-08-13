@@ -15,14 +15,14 @@ val keystoreProps = Properties().also { props ->
 
 android {
     namespace = "com.pinktakhyper.deeprednoise"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.pinktakhyper.deeprednoise"
         minSdk = 21
-        targetSdk = 35
-        versionCode = 2
-        versionName = "1.1"
+        targetSdk = 36
+        versionCode = 4
+        versionName = "1.3"
         vectorDrawables.useSupportLibrary = true
     }
 

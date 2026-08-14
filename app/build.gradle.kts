@@ -21,8 +21,8 @@ android {
         applicationId = "com.pinktakhyper.deeprednoise"
         minSdk = 21
         targetSdk = 36
-        versionCode = 4
-        versionName = "1.3"
+        versionCode = 5
+        versionName = "1.4"
         vectorDrawables.useSupportLibrary = true
     }
 
@@ -74,7 +74,6 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.androidx.material.icons.extended)
-    implementation(libs.androidx.compose.ui.text.google.fonts)
     implementation(libs.androidx.datastore.preferences)
     implementation(libs.androidx.media)
     implementation(platform(libs.firebase.bom))

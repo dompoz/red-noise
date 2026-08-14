@@ -8,26 +8,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.googlefonts.Font
-import androidx.compose.ui.text.googlefonts.GoogleFont
 import androidx.compose.ui.unit.sp
 import androidx.core.view.WindowCompat
 import com.pinktakhyper.deeprednoise.R
 
-private val provider = GoogleFont.Provider(
-    providerAuthority = "com.google.android.gms.fonts",
-    providerPackage = "com.google.android.gms",
-    certificates = R.array.com_google_android_gms_fonts_certs,
-)
-
-private val JostFont = GoogleFont("Jost")
-
 private val JostFamily = FontFamily(
-    Font(googleFont = JostFont, fontProvider = provider, weight = FontWeight.Thin),
-    Font(googleFont = JostFont, fontProvider = provider, weight = FontWeight.ExtraLight),
-    Font(googleFont = JostFont, fontProvider = provider, weight = FontWeight.Light),
+    Font(R.font.jost_thin, weight = FontWeight.Thin),
+    Font(R.font.jost_extralight, weight = FontWeight.ExtraLight),
+    Font(R.font.jost_light, weight = FontWeight.Light),
 )
 
 private val RedNoiseTypography = Typography(

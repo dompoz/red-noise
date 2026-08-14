@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="108" height="108" viewBox="0 0 108 108">
+  <g transform="translate(13.5,13.5) scale(0.75,0.75)">
+    <!-- bar 1  x=20.0  w=0.80  h=18 -->
+    <rect fill="#FFFFFF" x="19.60" y="45.00" width="0.80" height="18.00"/>
+    <!-- bar 2  x=24.0  w=0.93  h=26 -->
+    <rect fill="#FFFFFF" x="23.54" y="41.00" width="0.93" height="26.00"/>
+    <!-- bar 3  x=28.0  w=1.07  h=34 -->
+    <rect fill="#FFFFFF" x="27.47" y="37.00" width="1.07" height="34.00"/>
+    <!-- bar 4  x=32.0  w=1.20  h=28 -->
+    <rect fill="#FFFFFF" x="31.40" y="40.00" width="1.20" height="28.00"/>
+    <!-- bar 5  x=36.0  w=1.33  h=38 -->
+    <rect fill="#FFFFFF" x="35.34" y="35.00" width="1.33" height="38.00"/>
+    <!-- bar 6  x=40.0  w=1.47  h=44 -->
+    <rect fill="#FFFFFF" x="39.27" y="32.00" width="1.47" height="44.00"/>
+    <!-- bar 7  x=44.0  w=1.60  h=36 -->
+    <rect fill="#FFFFFF" x="43.20" y="36.00" width="1.60" height="36.00"/>
+    <!-- bar 8  x=48.0  w=1.73  h=48 -->
+    <rect fill="#FFFFFF" x="47.14" y="30.00" width="1.73" height="48.00"/>
+    <!-- bar 9  x=52.0  w=1.87  h=40 -->
+    <rect fill="#FFFFFF" x="51.07" y="34.00" width="1.87" height="40.00"/>
+    <!-- bar 10 x=56.0  w=2.00  h=30 -->
+    <rect fill="#FFFFFF" x="55.00" y="39.00" width="2.00" height="30.00"/>
+    <!-- bar 11 x=60.0  w=2.00  h=22 -->
+    <rect fill="#FFFFFF" x="59.00" y="43.00" width="2.00" height="22.00"/>
+    <!-- bar 12 x=64.0  w=2.00  h=32 -->
+    <rect fill="#FFFFFF" x="63.00" y="38.00" width="2.00" height="32.00"/>
+    <!-- bar 13 x=68.0  w=2.07  h=20 -->
+    <rect fill="#FFFFFF" x="66.97" y="44.00" width="2.07" height="20.00"/>
+    <!-- bar 14 x=72.0  w=2.13  h=28 -->
+    <rect fill="#FFFFFF" x="70.94" y="40.00" width="2.13" height="28.00"/>
+    <!-- bar 15 x=76.0  w=2.20  h=16 -->
+    <rect fill="#FFFFFF" x="74.90" y="46.00" width="2.20" height="16.00"/>
+    <!-- bar 16 x=80.0  w=2.27  h=24 -->
+    <rect fill="#FFFFFF" x="78.87" y="42.00" width="2.27" height="24.00"/>
+    <!-- bar 17 x=84.0  w=2.33  h=14 -->
+    <rect fill="#FFFFFF" x="82.84" y="47.00" width="2.33" height="14.00"/>
+    <!-- bar 18 x=88.0  w=2.40  h=10 -->
+    <rect fill="#FFFFFF" x="86.80" y="49.00" width="2.40" height="10.00"/>
+  </g>
+</svg>

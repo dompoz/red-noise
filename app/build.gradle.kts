@@ -21,8 +21,8 @@ android {
         applicationId = "com.pinktakhyper.deeprednoise"
         minSdk = 21
         targetSdk = 36
-        versionCode = 5
-        versionName = "1.4"
+        versionCode = 6
+        versionName = "1.5"
         vectorDrawables.useSupportLibrary = true
     }
 
@@ -60,6 +60,12 @@ android {
 
     buildFeatures {
         compose = true
+    }
+}
+
+configurations.all {
+    resolutionStrategy {
+        force("androidx.fragment:fragment:1.8.8")
     }
 }
 
